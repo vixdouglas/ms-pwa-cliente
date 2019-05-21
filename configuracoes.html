@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title>Configurações</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,500" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/plugins/Animsition/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style type="text/css">
+        :root {
+          --branding-color: #0bd5a2;
+        }        
+    </style>
+    <link rel="stylesheet" href="/css/custom.css">    
+</head>
+  
+  <body>
+    <div class="animsition">
+      <!-- Header -->
+      <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+        <header class="mdl-layout__header mdl-layout__header--waterfall branding">
+          <div class="mdl-layout__header-row">
+            <a href="/" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">arrow_back</i>
+            </a>              
+            <!-- Title -->
+            <span class="mdl-layout-title">Configurações</span>
+            <!-- Spacer -->
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="mdl-layout__content settings">
+            <p class="title">Receber Notificaçõe de:</p>
+              <ul>
+                <li>
+                  <i class="material-icons">shopping_basket</i> 
+                  <span>Nova Compra</span>
+                  <!-- switch -->
+                  <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="compra">
+                    <input type="checkbox" id="compra" class="mdl-switch__input" checked />
+                    <span class="mdl-switch__label"></span>
+                  </label>
+                  <div class="clr"></div>
+                </li>
+
+                <li>
+                  <i class="material-icons">money</i> 
+                  <span>Novo Pagamento</span>
+                  <!-- switch -->
+                  <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="pagamento">
+                    <input type="checkbox" id="pagamento" class="mdl-switch__input" checked />
+                    <span class="mdl-switch__label"></span>
+                  </label>
+                  <div class="clr"></div>
+                </li>
+                <li>
+                  <i class="material-icons">event</i> 
+                  <span>Novo Agendamento</span>
+                  <!-- switch -->
+                  <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="agendamento">
+                    <input type="checkbox" id="agendamento" class="mdl-switch__input" checked />
+                    <span class="mdl-switch__label"></span>
+                  </label>
+                  <div class="clr"></div>
+              </li>               
+          </ul>
+          <p class="title">Métodos de Notificações</p>
+          <ul>
+            <li>
+              <i class="material-icons">chat</i> 
+              <span>WhatsApp</span>
+              <!-- switch -->
+              <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="whatsapp">
+                <input type="checkbox" id="whatsapp" class="mdl-switch__input" checked />
+                <span class="mdl-switch__label"></span>
+              </label>
+              <div class="clr"></div>
+            </li>
+              
+            <li>
+              <i class="material-icons">textsms</i> 
+              <span>SMS</span>
+              <!-- switch -->
+              <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="sms">
+                <input type="checkbox" id="sms" class="mdl-switch__input" checked />
+                <span class="mdl-switch__label"></span>
+              </label>
+              <div class="clr"></div>
+            </li>
+            <li>
+              <i class="material-icons">phonelink_ring</i> 
+              <span>Push</span>
+              <!-- switch -->
+              <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="push">
+                <input type="checkbox" id="push" class="mdl-switch__input" checked />
+                <span class="mdl-switch__label"></span>
+              </label>
+              <div class="clr"></div>
+              </li>
+              <li>
+              <i class="material-icons">email</i> 
+              <span>Email</span>
+              <!-- switch -->
+              <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="email">
+                <input type="checkbox" id="email" class="mdl-switch__input" checked />
+                <span class="mdl-switch__label"></span>
+              </label>
+              <div class="clr"></div>
+            </li>                
+          </ul>
+        </main>
+      </div>
+    </div>
+
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/js/jquery.animsition.js"></script>
+    <script src="/js/sweetalert.min.js"></script> 
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <script src="/js/function.js"></script>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <title>Máximus Soluções</title>
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,500" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/plugins/Animsition/animsition.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/sweetalert.css">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style type="text/css">
+        :root {
+          --branding-color: #0bd5a2;
+        }        
+    </style>
+    <link rel="stylesheet" href="/css/custom.css">  
+</head>
+  
+    <body>
+    <div class="animsition">
+      <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
+        <header class="mdl-layout__header mdl-layout__header--waterfall branding">
+          <div class="mdl-layout__header-row">
+            <a href="/" class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">arrow_back</i>
+            </a>  
+            <!-- Title -->
+            <span class="mdl-layout-title">Meus Dados</span>
+            <!-- Spacer -->
+            <div class="mdl-layout-spacer"></div>
+          </div>
+        </header>
+
+      
+        <main class="mdl-layout__content mdl-color--white">  
+            <div class="profile-page">  
+                <img src="https://via.placeholder.com/150x90" alt="">
+                <div class="contact-info">
+                  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                    <i class="material-icons">save</i>
+                  </button>
+                  <h3>Douglas Gonçalves</h3>  
+                </div>
+            </div>
+
+            <div class="contact-about">
+              <div class="mdl-card mdl-shadow--2dp about">
+                <form action="#">
+                    <ms-input tipo="text" placeholder="Teste" valor="teste val" erro="Somente Números" pattern="-?[0-9]*(\.[0-9]+)?"></ms-input>
+                  <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="telefone">
+                    <label class="mdl-textfield__label" for="telefone">Telefone...</label>
+                    <span class="mdl-textfield__error">Somente Números!</span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </main>
+        </div>
+    </div>
+    
+    <script src="/js/jquery-2.1.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/js/jquery.animsition.js"></script>
+    <script src="/js/sweetalert.min.js"></script> 
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <script src="/js/jquery.swipebox.min.js"></script>
+    <script src="/js/function.js"></script>
+    <script>
+    //Classe do elemento
+    class MS_input extends HTMLElement {
+        constructor() {
+            //Sempre chamar super primeiro no construtor
+            super();
+            
+            //Nome
+            let nome;
+            if(this.hasAttribute('nome')) {
+                //Nome Informado
+                nome = this.getAttribute('nome');
+            }else{
+                //Nome aleatorio
+                nome = Math.random().toString(36).substring(7);
+                console.warn('Nome ñ informado, Nome Atibuido: '+nome);
+            }            
+            
+            // Cria wrapper
+            const wrapper = document.createElement('div');
+            wrapper.setAttribute('class', 'mdl-textfield mdl-js-textfield');
+
+            // Cria Input
+            const input = document.createElement('input');
+            input.setAttribute('class', 'mdl-textfield__input');
+            input.setAttribute('id', nome);
+            input.setAttribute('name', nome);
+            input.setAttribute('name', nome);
+            if(this.hasAttribute('pattern')) {
+                input.setAttribute('pattern', this.getAttribute('pattern'));
+            }
+            
+            //Tipo do imput
+            let tipo;
+            if(this.hasAttribute('tipo')) {
+                //Tipo Informado
+                tipo = this.getAttribute('tipo');
+            } else {
+                //Seta txt padrão
+                tipo = 'text';
+            }
+            input.setAttribute('type', tipo);
+            
+            //Valor do Input
+            if(this.hasAttribute('valor')) {
+                input.setAttribute('value', this.getAttribute('valor')); 
+            }
+            
+            //Placeholder
+            if(this.hasAttribute('placeholder')) {
+                input.setAttribute('placeholder', this.getAttribute('placeholder')); 
+            }                 
+            
+            // Cria Label
+            const label = document.createElement('label');
+            label.setAttribute('class', 'mdl-textfield__label');
+            label.setAttribute('for', nome);
+            
+            //MSG Erro do Input
+            const erro = document.createElement('span');
+            if(this.hasAttribute('erro')) {                
+                erro.textContent = this.getAttribute('erro');
+                erro.setAttribute('class', 'mdl-textfield__error');
+            }            
+            
+            this.appendChild(wrapper);
+            wrapper.appendChild(input);
+            wrapper.appendChild(label);
+            wrapper.appendChild(erro);
+        }
+    }
+
+    // Define elementot
+    customElements.define('ms-input', MS_input);
+
+    </script>
+  </body>
+</html>
