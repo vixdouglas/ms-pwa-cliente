@@ -34,7 +34,7 @@ main[rel=home]{
 /* Header Global */
 header.branding {
     background: var(--branding-color);
-    background-image: url(/img/partners/home.png);    
+    background-image: url(./img/partners/home.png);    
 }
 
 header.branding .mdl-layout__header-row{
@@ -46,7 +46,7 @@ main[rel=home] header{
     height: 25vh;
     position: relative;
     background: var(--branding-color);
-    background-image: url(/img/partners/home.png);
+    background-image: url(./img/partners/home.png);
 }
 
 main[rel=home] header .overlay{
