@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let direcao = window.location.pathname == '/' ? 'left' : 'right';
+    let direcao = window.location.pathname.replace("/ms-pwa-cliente/", "") == '/' ? 'left' : 'right';
     console.log('Direção: '+direcao+' pat: '+window.location.pathname);
     $(".animsition").animsition({
         inClass               : 'fade-in-'+direcao,
