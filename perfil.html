@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,300,400,500" type="text/css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="plugins/Animsition/animsition.min.css">
-    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
     <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.indigo-pink.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style type="text/css">
@@ -54,7 +53,7 @@
               <div class="mdl-card mdl-shadow--2dp about">
                 <form action="#">
                     <ms-input tipo="text" nome="Nome" valor="Douglas Gonçalves"></ms-input>
-                    <ms-input tipo="tel" nome="tel" valor="(27) 99747-9288" erro="Somente Números" pattern="-?[0-9]*(\.[0-9]+)?"></ms-input>
+                    <ms-input tipo="telefone" nome="tel" valor="(27) 99747-9288" erro="Telefone Inválido" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" obrigatorio></ms-input>
                 </form>
               </div>
             </div>
@@ -64,9 +63,7 @@
     
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/js/jquery.animsition.js"></script>
-    <script src="js/sweetalert.min.js"></script> 
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
-    <script src="js/jquery.swipebox.min.js"></script>
     <script src="js/function.js"></script>
     <script>
     //Classe do elemento
@@ -100,13 +97,17 @@
                 input.setAttribute('pattern', this.getAttribute('pattern'));
             }
             
+            if(this.hasAttribute('obrigatorio')) {
+                input.required = true;
+            }            
+            
             //Tipo do imput
             let tipo;
             if(this.hasAttribute('tipo')) {
                 //Tipo Informado
                 tipo = this.getAttribute('tipo');
-            } else {
-                //Seta txt padrão
+            }else{
+                //Seta txt como padrão
                 tipo = 'text';
             }
             input.setAttribute('type', tipo);
