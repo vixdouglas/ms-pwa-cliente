@@ -196,6 +196,7 @@
         let mask = input.value.length == 15 ? 1 : 0;
         VMasker(input).maskPattern(telMasks[mask]);
         input.addEventListener('input', this._inputHandler.bind(undefined, telMasks, 14), false);
+        input.setAttribute('inputmode', "numeric");
         erro.textContent = 'Número de telefone inválido!';
       }
 
