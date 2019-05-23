@@ -202,18 +202,20 @@
       _montaCPF(input, erro){
         VMasker(input).maskPattern("999.999.999-99");
         input.setAttribute('pattern', "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
-        input.setAttribute('type', "number");
+        input.setAttribute('inputmode', "numeric");
         erro.textContent = 'CPF Inválido!';
       }
 
       _montaCEP(input, erro){
         VMasker(input).maskPattern("99.999-999");
         input.setAttribute('pattern', "^\\d{2}\\.\\d{3}-\\d{3}$");
+        input.setAttribute('inputmode', "numeric");
         erro.textContent = 'CEP Inválido!';
       }
 
       _montaMoeda(input, erro){
         VMasker(input).maskMoney({unit: 'R$'});
+        input.setAttribute('inputmode', "numeric");
       }
 
       _montaData(input, erro){
