@@ -19,6 +19,13 @@ input[type=date]:focus::-webkit-datetime-edit {
     color: black !important;
 }
 
+/* BUttons */
+
+.mdl-button {
+    display: block;
+    margin: 10px 0;
+}
+
 /* Global */
 .content{
     position: absolute;

@@ -62,6 +62,16 @@
                     <labe>Selects</labe>
                     <ms-select nome="cidade" placeholder="Cidade" opcoes="[{'1': 'Cariacica'}, {'2': 'Serra'}]">
                     </ms-select>
+                    <labe>Buttons</labe>
+                    <ms-btn texto="Botão Simples"></ms-btn>
+                    <ms-btn texto="Botão Com Icone" ripple></ms-btn>
+                    <ms-btn texto="Botão Desabilitado" icone="add" disabled></ms-btn>
+                    <ms-btn texto="Botão Cor Primaria" cor="primaria"></ms-btn>
+                    <ms-btn texto="Botão Cor Primaria Ripple" cor="primaria" ripple></ms-btn>
+                    <ms-btn texto="Botão Cor Secundária" cor="secundaria"></ms-btn>
+                    <ms-btn texto="Botão Cor Secundária Ripple" cor="secundaria" ripple></ms-btn>
+                    
+                    <ms-btn icone="add" circular></ms-btn>
                 </form>
               </div>
             </div>
@@ -76,6 +86,76 @@
     <script src="js/mdl-selectfield.min.js"></script>
     <script src="js/function.js"></script>
     <script>
+    class MS_btn extends HTMLElement {
+      constructor(){
+          //Sempre chamar super primeiro no construtor
+          super();
+
+          //Nome
+          let id;
+          if(this.hasAttribute('id')) {
+              //Nome Informado
+              id = this.getAttribute('id');
+          }else{
+              //Nome aleatorio
+              id = Math.random().toString(36).substring(7);
+              console.warn('ID ñ informado, Nome Atibuido: '+id);
+          }
+
+          // Cria btn
+          const btn = document.createElement('buttom');
+
+          //Classe Padrão
+          btn.setAttribute('class', 'mdl-button  mdl-js-button mdl-button--raised');          
+          
+          //Texto
+          if(this.hasAttribute('texto')){
+            btn.innerHTML = this.getAttribute('texto');
+          }
+
+          //icon
+          let icon;
+          if(this.hasAttribute('icone')){
+            icon = document.createElement('i');
+            icon.setAttribute('class', 'material-icons');  
+            icon.textContent = this.getAttribute('icone');
+            btn.prepend(icon);                
+          }          
+
+          //Circular
+          if(this.hasAttribute('circular')){
+            btn.classList.add("mdl-button--fab");    
+          }
+          
+          //ripple
+          if(this.hasAttribute('ripple')){
+            btn.classList.add("mdl-js-ripple-effect");    
+          }
+
+          //Desabilitado
+          if(this.hasAttribute('disabled')){
+            btn.setAttribute('disabled', true);
+          }
+          
+          //cor
+          if(this.hasAttribute('cor')){
+            let classe = (this.getAttribute('cor') == "secundaria" ? 'mdl-button--accent': 'mdl-button--colored');
+            btn.classList.add('class', classe);
+          }              
+
+          
+          // button.classList.add("mdl-button");        
+
+          
+          this.appendChild(btn);
+             
+          // wrapper.appendChild(select);
+          // wrapper.appendChild(label);
+          // wrapper.appendChild(erro);
+      }
+    }
+    customElements.define('ms-btn', MS_btn);
+
     //Classe do elemento
     class MS_input extends HTMLElement {
       constructor(){
