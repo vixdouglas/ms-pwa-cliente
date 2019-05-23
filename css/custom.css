@@ -11,6 +11,14 @@
     color: #303030;
 }
 
+/* Inpts */
+input[type=date][value=""]:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+input[type=date]:focus::-webkit-datetime-edit {
+    color: black !important;
+}
+
 /* Global */
 .content{
     position: absolute;

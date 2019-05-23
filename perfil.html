@@ -52,8 +52,12 @@
             <div class="contact-about">
               <div class="mdl-card mdl-shadow--2dp about">
                 <form action="#">
-                    <ms-input tipo="text" nome="Nome" valor="Douglas Gonçalves"></ms-input>
-                    <ms-input tipo="telefone" nome="tel" valor="(27) 99747-9288" erro="Telefone Inválido" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" obrigatorio></ms-input>
+                    <ms-input tipo="text" nome="nome" label="Nome" valor="Douglas Gonçalves"></ms-input>
+                    <ms-input tipo="telefone" nome="tel" valor="(99) 99999-9999" erro="Telefone Inválido" pattern="\([0-9]{2}\) [0-9]{4,6}-[0-9]{3,4}$" obrigatorio></ms-input>
+                    <ms-input tipo="cpf" nome="cpf" label="CPF"></ms-input>
+                    <ms-input tipo="moeda" nome="cpf" label="Valor"></ms-input>
+                    <ms-input tipo="data" nome="data" label="Data"></ms-input>
+                    <ms-input tipo="cep" nome="cep" label="CEP"></ms-input>
                 </form>
               </div>
             </div>
@@ -64,81 +68,160 @@
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animsition/3.5.2/js/jquery.animsition.js"></script>
     <script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+    <script src="js/vanilla-masker.js"></script>
     <script src="js/function.js"></script>
     <script>
     //Classe do elemento
     class MS_input extends HTMLElement {
-        constructor() {
-            //Sempre chamar super primeiro no construtor
-            super();
-            
-            //Nome
-            let nome;
-            if(this.hasAttribute('nome')) {
-                //Nome Informado
-                nome = this.getAttribute('nome');
-            }else{
-                //Nome aleatorio
-                nome = Math.random().toString(36).substring(7);
-                console.warn('Nome ñ informado, Nome Atibuido: '+nome);
-            }            
-            
-            // Cria wrapper
-            const wrapper = document.createElement('div');
+      constructor() {
+          //Sempre chamar super primeiro no construtor
+          super();
+          
+          //Nome
+          let nome;
+          if(this.hasAttribute('nome')) {
+              //Nome Informado
+              nome = this.getAttribute('nome');
+          }else{
+              //Nome aleatorio
+              nome = Math.random().toString(36).substring(7);
+              console.warn('Nome ñ informado, Nome Atibuido: '+nome);
+          }            
+          
+          // Cria wrapper
+          const wrapper = document.createElement('div');
+          
+          //Label
+          if(this.hasAttribute('label')) {
+            wrapper.setAttribute('class', 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label');
+          }else{
             wrapper.setAttribute('class', 'mdl-textfield mdl-js-textfield');
+          }
 
-            // Cria Input
-            const input = document.createElement('input');
-            input.setAttribute('class', 'mdl-textfield__input');
-            input.setAttribute('id', nome);
-            input.setAttribute('name', nome);
-            input.setAttribute('name', nome);
-            if(this.hasAttribute('pattern')) {
-                input.setAttribute('pattern', this.getAttribute('pattern'));
-            }
-            
-            if(this.hasAttribute('obrigatorio')) {
-                input.required = true;
-            }            
-            
-            //Tipo do imput
-            let tipo;
-            if(this.hasAttribute('tipo')) {
-                //Tipo Informado
-                tipo = this.getAttribute('tipo');
-            }else{
-                //Seta txt como padrão
-                tipo = 'text';
-            }
-            input.setAttribute('type', tipo);
-            
-            //Valor do Input
-            if(this.hasAttribute('valor')) {
-                input.setAttribute('value', this.getAttribute('valor')); 
-            }
-            
-            //Placeholder
-            if(this.hasAttribute('placeholder')) {
-                input.setAttribute('placeholder', this.getAttribute('placeholder')); 
-            }                 
-            
-            // Cria Label
-            const label = document.createElement('label');
-            label.setAttribute('class', 'mdl-textfield__label');
-            label.setAttribute('for', nome);
-            
-            //MSG Erro do Input
-            const erro = document.createElement('span');
-            if(this.hasAttribute('erro')) {                
-                erro.textContent = this.getAttribute('erro');
-                erro.setAttribute('class', 'mdl-textfield__error');
-            }            
-            
-            this.appendChild(wrapper);
-            wrapper.appendChild(input);
-            wrapper.appendChild(label);
-            wrapper.appendChild(erro);
-        }
+          // Cria Input
+          const input = document.createElement('input');
+          input.setAttribute('class', 'mdl-textfield__input');
+          input.setAttribute('id', nome);
+          input.setAttribute('name', nome);
+          input.setAttribute('name', nome);
+          if(this.hasAttribute('pattern')) {
+              input.setAttribute('pattern', this.getAttribute('pattern'));
+          }
+          
+          if(this.hasAttribute('obrigatorio')) {
+              input.required = true;
+          }            
+          
+          //Tipo do input
+          let tipo;
+          if(this.hasAttribute('tipo')) {
+              //Tipo Informado
+              tipo = this.getAttribute('tipo');
+          }else{
+              //Seta txt como padrão
+              tipo = 'text';
+          }
+          input.setAttribute('type', tipo);
+          
+          //Valor do Input
+          if(this.hasAttribute('valor')) {            
+              input.setAttribute('value', this.getAttribute('valor')); 
+          }
+          
+          //Placeholder
+          if(this.hasAttribute('placeholder') && !this.hasAttribute('label')) {
+              input.setAttribute('placeholder', this.getAttribute('placeholder')); 
+          }                 
+          
+          // Cria Label
+          const label = document.createElement('label');
+          label.setAttribute('class', 'mdl-textfield__label');
+          label.setAttribute('for', nome);
+          if(this.hasAttribute('label')) {
+            label.textContent = this.getAttribute('label')
+          }else{
+            // label.textContent = nome;
+          }
+          
+          //MSG Erro do Input
+          const erro = document.createElement('span');
+          erro.setAttribute('class', 'mdl-textfield__error');          
+          if(this.hasAttribute('erro')) {                
+            erro.textContent = this.getAttribute('erro');              
+          }else{
+            erro.textContent = 'Dados Inválidos';
+          }
+          
+          this.appendChild(wrapper);
+          wrapper.appendChild(input);
+          wrapper.appendChild(label);
+          wrapper.appendChild(erro);
+
+          switch (tipo) {
+            case 'telefone':
+              this._montaTelefone(input, erro);
+              break;
+            case 'cpf':
+              this._montaCPF(input, erro);
+              break;
+            case 'moeda':
+              this._montaMoeda(input, erro);
+              break;
+            case 'data':
+              this._montaData(input, erro);
+              break;
+            case 'cep':
+              this._montaCEP(input, erro);
+              break;                
+            default:
+              console.log('Tipo simples');
+          }             
+      }
+      
+      connectedCallback(){
+      
+      }
+
+      _inputHandler(masks, max, event) {
+        var c = event.target;
+        var v = c.value.replace(/\D/g, '');
+        var m = c.value.length > max ? 1 : 0;
+        VMasker(c).unMask();
+        VMasker(c).maskPattern(masks[m]);
+        c.value = VMasker.toPattern(v, masks[m]);
+      }      
+
+      _montaTelefone(input, erro){
+        let telMasks = ['(99) 9999-99999', '(99) 99999-9999'];
+        let mask = input.value.length == 15 ? 1 : 0;
+        VMasker(input).maskPattern(telMasks[mask]);
+        input.addEventListener('input', this._inputHandler.bind(undefined, telMasks, 14), false);
+        erro.textContent = 'Número de telefone inválido!';
+      }
+
+      _montaCPF(input, erro){
+        VMasker(input).maskPattern("999.999.999-99");
+        input.setAttribute('pattern', "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$");
+        erro.textContent = 'CPF Inválido!';
+      }
+
+      _montaCEP(input, erro){
+        VMasker(input).maskPattern("99.999-999");
+        input.setAttribute('pattern', "^\\d{2}\\.\\d{3}-\\d{3}$");
+        erro.textContent = 'CEP Inválido!';
+      }
+
+      _montaMoeda(input, erro){
+        VMasker(input).maskMoney({unit: 'R$'});
+      }
+
+      _montaData(input, erro){
+        VMasker(input).maskPattern('99/99/9999');
+        input.setAttribute('pattern', "[0-9]{4}-[0-9]{2}-[0-9]{2}");
+        input.setAttribute('type', "date");
+        input.setAttribute('placeholder', "e");
+        erro.textContent = 'Data Inválida';
+      }      
     }
 
     // Define elementot
