@@ -6,7 +6,7 @@
   "display": "minimal-ui",
   "orientation": "portrait",
   "Scope": "/",
-  "start_url": "/",
+  "start_url": "/ms-pwa-cliente",
   "sidebar_action": {
     "default_icon": "sidebar.svg",
     "default_title": "My sidebar!",
