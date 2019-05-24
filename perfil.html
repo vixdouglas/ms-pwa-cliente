@@ -28,7 +28,7 @@
       <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
         <header class="mdl-layout__header mdl-layout__header--waterfall branding">
           <div class="mdl-layout__header-row">
-            <a href="./" class="mdl-button mdl-js-button mdl-button--icon">
+            <a href="./" class="mdl-button mdl-js-button mdl-button--icon" rel="voltar">
                 <i class="material-icons">arrow_back</i>
             </a>  
             <!-- Title -->
@@ -414,7 +414,7 @@
           // é para esquerda
         } else {
           //DIreita
-          window.location.href = "./";
+          $('[rel=voltar]').click();
         }
     } else {
         // é vertical
@@ -425,14 +425,7 @@
         }
     }
   }, false);
-      
-    document.addEventListener('touchstart', function(e) {
-      e.preventDefault();
-      var touch = e.touches[0];
-      if(touch.pageX <= 30){
-        window.location.href = "./";
-      }
-    }, false);  
+    
     </script>
   </body>
 </html>
