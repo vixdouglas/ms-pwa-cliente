@@ -392,13 +392,24 @@
     }
     customElements.define('ms-select', MS_select);
     
+    document.addEventListener('swiped-left', function(e) {
+    console.log(e.target); // the element that was swiped
+});
+
     //VOltar
-    document.addEventListener('touchmove', function(e) {
+    document.addEventListener('touchstart', function(e) {
+      console.log(e);
       e.preventDefault();
       var touch = e.touches[0];
-      alert(touch.pageX + " - " + touch.pageY);
-  }, false);
-    
+      console.log(touch.pageX + " - " + touch.pageY);
+    }, false);
+      
+    document.addEventListener('touchmove', function(e) {
+      console.log(e);
+      e.preventDefault();
+      var touch = e.touches[0];
+      console.log(touch.pageX + " - " + touch.pageY);
+    }, false);  
     </script>
   </body>
 </html>
