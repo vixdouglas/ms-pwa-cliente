@@ -1,7 +1,6 @@
 let pathname = window.location.pathname.replace("/ms-pwa-cliente", "");
 $(document).ready(function() {
     let direcao = (pathname == '/' ? 'left' : 'right');
-    console.log('Direção: '+direcao+' pat: '+window.location.pathname);
     $(".animsition").animsition({
         inClass               :   'fade-in-'+direcao,
         outClass              :   'fade-out-'+direcao,
@@ -40,8 +39,8 @@ $(document).ready(function() {
                     // é para esquerda
                 } else {
                     //DIreita
-                    let deslocamento = td_x+td_y;
-                    if(deslocamento > 50){
+                    let deslocamento = td_x+td_y;//Distancia de deslocamento
+                    if(deslocamento > 100){
                         $('a[href="./"]').click();
                     }
                 }
