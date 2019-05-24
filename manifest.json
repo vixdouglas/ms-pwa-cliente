@@ -7,6 +7,15 @@
   "orientation": "portrait",
   "Scope": "/",
   "start_url": "/",
+  "sidebar_action": {
+    "default_icon": "sidebar.svg",
+    "default_title": "My sidebar!",
+    "default_panel": "scan.html",
+    "browser_style": true
+  },
+  "options_ui": {
+    "page": "configuracoes.html"
+  },
   "icons": [
     {
       "src": "img/icons/icon-72x72.png",
