@@ -1,5 +1,6 @@
+let pathname = window.location.pathname.replace("/ms-pwa-cliente", "");
 $(document).ready(function() {
-    let direcao = window.location.pathname.replace("/ms-pwa-cliente", "") == '/' ? 'left' : 'right';
+    let direcao = (pathname == '/' ? 'left' : 'right');
     console.log('Direção: '+direcao+' pat: '+window.location.pathname);
     $(".animsition").animsition({
         inClass               :   'fade-in-'+direcao,
@@ -15,4 +16,43 @@ $(document).ready(function() {
         overlayClass          :   'animsition-overlay-slide',
         overlayParentElement  :   'body'
     });
+
+    //VOltar
+    if(pathname != '/'){
+        let ts_x;
+        let ts_y;
+        document.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            let touch = e.changedTouches[0];
+            ts_x = touch.pageX;
+            ts_y = touch.pageY;
+        }, false);
+
+        document.addEventListener('touchmove', function(e){
+            e.preventDefault();
+            let touch = e.changedTouches[0];
+            td_x = touch.pageX - ts_x; // deslocamento na horizontal
+            td_y = touch.pageY - ts_y; // deslocamento na vertical
+            // O movimento principal foi vertical ou horizontal?
+            if( Math.abs( td_x ) > Math.abs( td_y ) ) {
+                // é horizontal
+                if( td_x < 0 ) {
+                    // é para esquerda
+                } else {
+                    //DIreita
+                    let deslocamento = td_x+td_y;
+                    if(deslocamento > 50){
+                        $('a[href="./"]').click();
+                    }
+                }
+            } else {
+                // é vertical
+                if( td_y < 0 ) {
+                    // cima
+                } else {
+                    // baixo
+                }
+            }
+        }, false);
+    }
 });
